@@ -5,7 +5,7 @@
 ###
 
 if [ "$TRAVIS_BRANCH" == "main" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-    docker tag ${NAME} ${ECR_URI}/${NAME}:latest
+    docker tag ${NAME} ${DOCKER_URI}/${NAME}:latest
     rc=$?; if [ $rc -ne 0 ]; then exit $rc; fi
 
     docker images
