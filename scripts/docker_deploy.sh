@@ -4,7 +4,7 @@
 ### Makefile under 'deploy:' rule, which is set to the name of the component/module/service.
 ###
 
-if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+if [ "$TRAVIS_BRANCH" == "main" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker tag ${NAME} ${ECR_URI}/${NAME}:latest
     rc=$?; if [ $rc -ne 0 ]; then exit $rc; fi
 
@@ -14,5 +14,5 @@ if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; th
     # docker push ${DOCKER_URI}/${NAME}:latest
     # rc=$?; if [ $rc -ne 0 ]; then exit $rc; fi
 else
-    echo "Skipping deploy because not on master branch"
+    echo "Skipping deploy because not on main branch"
 fi
