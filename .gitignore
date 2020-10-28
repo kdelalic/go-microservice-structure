@@ -1,0 +1,9 @@
+**/*.pb.gw.go
+**/*.pb.go
+**/*.swagger.json
+**/secrets/*
+!**/secrets/*.enc
+!**/secrets/README.md
+main
+main-alpine
+.DS_Store

@@ -1,0 +1,49 @@
+version: '3'
+
+# Define services
+services:
+    # Service1 Service
+    service1:
+        # Configuration for building the docker image for the service
+        build:
+            context: . # Use an image built from the specified dockerfile in the current directory.
+            dockerfile: services/service1/Dockerfile
+        ports:
+            - "443:443"
+        environment:
+            SERVICE2_ENDPOINT: service2:10001
+        volumes:
+            - certs:/certs
+        networks:
+            - backend
+
+    # Service2 Service
+    service2:
+        # Configuration for building the docker image for the service
+        build:
+            context: . # Use an image built from the specified dockerfile in the current directory.
+            dockerfile: services/service2/Dockerfile
+        ports:
+            - "10001:10001" # Forward the exposed port 10001 on the container to port 10001 on the host machine
+        volumes:
+            - certs:/certs
+            - secrets:/secrets
+        networks: # Networks to join (Services on the same network can communicate with each other using their name)
+            - backend
+
+networks:
+  backend:
+
+volumes:
+    certs: 
+        driver: local
+        driver_opts:
+            type: "nfs"
+            o: bind
+            device: "$PWD/internal/certs"
+    secrets:
+        driver: local
+        driver_opts:
+            type: "nfs"
+            o: bind
+            device: "$PWD/internal/secrets"

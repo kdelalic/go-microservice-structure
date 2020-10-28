@@ -1,0 +1,74 @@
+syntax="proto3";
+
+package service2;
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service Service2 {
+    rpc Func1(Func1Request) returns (Func1Response) {
+        option (google.api.http) = { 
+            post: "/v1/service2/func1" body: "*" 
+        };
+    }
+}
+
+message Func1Request {
+    Filter filter = 1;
+}
+
+message Filter {
+    Capacity capacity = 1;
+    RoomType roomType = 2;
+    bool wheelchair = 3;
+    bool windows = 4;
+    Building building = 5;
+}
+
+message Capacity {
+    int32 size = 1;
+    Comparison comparison = 2;
+}
+
+enum Comparison {
+    LESS_THAN = 0;
+    LESS_THAN_EQUAL_TO = 1;
+    EQUAL_TO = 2;
+    GREATER_THAN_EQUAL_TO = 3;
+    GREATER_THAN = 4;
+}
+
+enum RoomType {
+    ANY_ROOM = 0;
+    CLASSROOM = 1;
+    LECTURE_THEATRE = 2;
+    DEPARTMENTAL_ROOM = 3;
+    DEPARTMENTAL_LAB = 4;
+    ACTIVE_LEARNING_CLASSROOM = 5;
+    TESTING_CENTRE = 6;
+}
+
+enum Building {
+    ANY_BUILDING = 0;
+    BUILDING_1 = 1;
+    BUILDING_2 = 2;
+}
+
+message Func1Response {
+    repeated Room rooms = 1;
+}
+
+message Room {
+    string ID = 1;
+    int64 Capacity = 2;
+    RoomType RoomType = 3;
+    bool Wheelchair = 4;
+    repeated string Photos = 5;
+    bool Windows = 6;
+    Building Building = 7;
+    string RoomNumber = 8;
+    string Light = 9;
+    bool Motion = 10;
+    string Sound = 11;
+    google.protobuf.Timestamp Timestamp = 12;
+}

@@ -1,0 +1,17 @@
+language: go
+
+go:
+  - 1.15.x
+
+install:
+  - make protoc_install # Install protoc
+  
+before_script:
+  - make protoc # Generate proto files for go services
+
+script:
+  - ./scripts/build.sh # Build go binaries, docker containers, and then deploy if on main branch
+
+after_success:
+  - docker images
+  - docker ps -a
