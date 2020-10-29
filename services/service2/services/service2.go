@@ -4,14 +4,14 @@ package services
 import (
 	"context"
 
-	model "github.com/kdelalic/go-microservice-structure/pkg/proto/service2"
+	pb "github.com/kdelalic/go-microservice-structure/pkg/proto/service2"
 )
 
 // Func1 takes the input and returns some output
-func Func1(ctx context.Context, req *model.Func1Request) (*model.Func1Response, error) {
+func Func1(ctx context.Context, req *pb.Func1Request) (*pb.Func1Response, error) {
 
 	// Build response
-	res := &model.Func1Response{
+	res := &pb.Func1Response{
 		Rooms: nil,
 	}
 

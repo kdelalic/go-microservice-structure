@@ -9,7 +9,7 @@ import (
 
 	"github.com/kdelalic/go-microservice-structure/pkg/config"
 	"github.com/kdelalic/go-microservice-structure/pkg/helpers"
-	model "github.com/kdelalic/go-microservice-structure/pkg/proto/service2"
+	pb "github.com/kdelalic/go-microservice-structure/pkg/proto/service2"
 	"github.com/kdelalic/go-microservice-structure/services/service2/controllers"
 )
 
@@ -28,7 +28,7 @@ func main() {
 	// Create a new server using the created credentials.
 	gRPCServer := grpc.NewServer(grpc.Creds(creds))
 
-	model.RegisterService2Server(gRPCServer, &controllers.Service2Server{})
+	pb.RegisterService2Server(gRPCServer, &controllers.Service2Server{})
 
 	log.Printf("Service2 deployed on: %s\n", config.Service2ServicePort)
 

@@ -3,6 +3,10 @@ language: go
 go:
   - 1.15.x
 
+addons:
+  apt:
+    update: true
+
 install:
   - make protoc_install # Install protoc
   

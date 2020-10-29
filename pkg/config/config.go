@@ -4,6 +4,12 @@ import (
 	"github.com/kdelalic/go-microservice-structure/pkg/helpers"
 )
 
+// ApigatewayName is the name of apigateway
+var ApigatewayName string = "apigateway"
+
+// ApigatewayPort is the port that apigateway is deployed on
+var ApigatewayPort string = helpers.GetEnv("APIGATEWAY_PORT", ":443")
+
 // Service1ServiceName is the name of service1
 var Service1ServiceName string = "service1"
 
@@ -19,8 +25,8 @@ var Service2ServiceName string = "service2"
 // Service2ServicePort is the port that service2 is deployed on
 var Service2ServicePort string = helpers.GetEnv("SERVICE2_PORT", ":10002")
 
-// Service2Endpoint is the endpoint which service2 can be called from
-var Service2Endpoint string = helpers.GetEnv("SERVICE2_ENDPOINT", "localhost"+Service2ServicePort)
+// Service2ServiceEndpoint is the endpoint which service2 can be called from
+var Service2ServiceEndpoint string = helpers.GetEnv("SERVICE2_ENDPOINT", "localhost"+Service2ServicePort)
 
 // Environment is use to determine whether we are in production or development mode
 var Environment string = helpers.GetEnv("GO_ENV", "development")

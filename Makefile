@@ -6,7 +6,11 @@ GOCLEAN=$(GOCMD) clean
 # This included makefile should define the 'custom' target rule which is called here.
 include $(INCLUDE_MAKEFILE)
 
-build: build_service1 build_service2
+build: build_apigateway build_service1 build_service2
+
+build_apigateway:
+	@echo "Building apigateway binary..."
+	$(GOBUILD) services/apigateway/main.go
 
 build_service1:
 	@echo "Building service1 binary..."

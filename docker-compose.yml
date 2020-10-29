@@ -1,7 +1,23 @@
-version: '3'
+version: "3"
 
 # Define services
 services:
+    # Apigateway Service
+    apigateway:
+        # Configuration for building the docker image for the service
+        build:
+            context: . # Use an image built from the specified dockerfile in the current directory.
+            dockerfile: services/apigateway/Dockerfile
+        ports:
+            - "443:443"
+        environment:
+            SERVICE1_ENDPOINT: service1:10001
+            SERVICE2_ENDPOINT: service2:10002
+        volumes:
+            - certs:/certs
+        networks:
+            - backend
+
     # Service1 Service
     service1:
         # Configuration for building the docker image for the service
@@ -32,10 +48,10 @@ services:
             - backend
 
 networks:
-  backend:
+    backend:
 
 volumes:
-    certs: 
+    certs:
         driver: local
         driver_opts:
             type: "nfs"

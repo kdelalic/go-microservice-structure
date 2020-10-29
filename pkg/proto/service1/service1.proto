@@ -5,6 +5,8 @@ package service1;
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
+option go_package="github.com/kdelalic/go-microservice-structure/pkg/proto/service1";
+
 service Service1 {
     rpc Func1(Func1Request) returns (Func1Response) {
         option (google.api.http) = { 
@@ -19,7 +21,7 @@ message Func1Request {
 
 message Filter {
     Capacity capacity = 1;
-    RoomType roomType = 2;
+    RoomType room_type = 2;
     bool wheelchair = 3;
     bool windows = 4;
     Building building = 5;
@@ -60,15 +62,15 @@ message Func1Response {
 
 message Room {
     string ID = 1;
-    int64 Capacity = 2;
-    RoomType RoomType = 3;
-    bool Wheelchair = 4;
-    repeated string Photos = 5;
-    bool Windows = 6;
-    Building Building = 7;
-    string RoomNumber = 8;
-    string Light = 9;
-    bool Motion = 10;
-    string Sound = 11;
-    google.protobuf.Timestamp Timestamp = 12;
+    int64 capacity = 2;
+    RoomType room_type = 3;
+    bool wheelchair = 4;
+    repeated string photos = 5;
+    bool windows = 6;
+    Building building = 7;
+    string room_number = 8;
+    string light = 9;
+    bool motion = 10;
+    string sound = 11;
+    google.protobuf.Timestamp timestamp = 12;
 }
